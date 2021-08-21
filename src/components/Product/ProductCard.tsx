@@ -1,5 +1,6 @@
 import React from 'react'
 import { Product } from '../../App';
+import { Button } from '@material-ui/core'
 
 type Props = {
   product: Product;
@@ -17,16 +18,21 @@ const ProductCard: React.FC<Props> = ({ product, handleAddToCart }) => (
         backgroundSize: 'contain',
       }}
     ></div>
-    <div className={`flex flex-col justify-between w-full h-auto p-2`}>
+    <div className={`flex flex-col justify-between items-center w-full h-auto p-2`}>
       <div className={``}>
         <h3 className={`text-base font-semibold`}>{product.title}</h3>
         <p className={`text-sm`}>{product.description}</p>
-        <h3 className={`mt-2`}>
+        <h3 className={`my-2`}>
           <span className={`font-semibold mr-1`}>Price:</span>
           <span>${product.price.toFixed(2)}</span>
         </h3>
       </div>
-      <button onClick={() => handleAddToCart(product)} className={`w-full`}>Add to Cart</button>
+      <Button
+        onClick={() => handleAddToCart(product)}
+        variant="contained"
+        color="primary"
+        className={`w-full`}
+      >Add to cart</Button>
     </div>
   </div>
 )

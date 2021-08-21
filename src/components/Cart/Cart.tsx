@@ -25,10 +25,9 @@ const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
         />
       ))}
       <h3 className={`mt-5 text-xl md:text-xl px-5 md:px-2`}>
-        <span className={`font-bold mr-1`}>Total Purchase Summary:</span>
+        <span className={`font-bold mr-1`}>Total Purchase:</span>
         <span>${totalCartArray.toFixed(2)}</span>
       </h3>
-
     </div>
   )
 }

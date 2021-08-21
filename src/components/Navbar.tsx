@@ -22,7 +22,7 @@ const Navbar: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
     products.reduce((count: number, product: Product) => count + product.qty, 0)
 
   return (
-    <div className="flex fixed top-0 justify-between items-center w-full h-30 shadow-md bg-white">
+    <div className="flex fixed top-0 justify-between items-center w-full h-30 shadow-md bg-white z-10">
       <Link to='/'>
         <h1 className={`text-3xl font-bold p-4`}>
           <span>Fake</span>
