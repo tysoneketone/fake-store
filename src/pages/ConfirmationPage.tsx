@@ -4,15 +4,17 @@ import { Button } from '@material-ui/core'
 import OrderItem from '../components/Confirmation/OrderItem';
 
 type Props = {
+  orderId: string;
   orderedItems?: Product[];
   totalOrderAmount: string;
   clearOrder: () => void;
 }
 
-const ConfirmationPage: React.FC<Props> = ({ orderedItems, totalOrderAmount,  clearOrder }) => {
+const ConfirmationPage: React.FC<Props> = ({ orderId, orderedItems, totalOrderAmount,  clearOrder }) => {
   return (
     <div className={`flex flex-col justify-center items-center max-w-7xl mx-auto`}>
       <h1 className={`w-full my-5 text-4xl text-center font-bold`}>Your Order Confirmation</h1>
+      <h1 className={`w-full md:w-3/5 my-5 text-xl font-bold`}>Order ID: #{orderId}</h1>
       <div className={`w-full md:w-3/5 mx-auto mb-8`}>
         { 
           orderedItems?.map((item) => (

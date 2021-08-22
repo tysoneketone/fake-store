@@ -9,8 +9,11 @@ type Props = {
 const HomePage: React.FC<Props> = ({ products, addToCart }) => {
   return (
     <div className={`flex flex-col lg:flex-row w-full h-full px-3`}>
-      <div className={`w-full mt-5`}>
-        <div className={`grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-4 break-inside`}>
+      <div className={`w-full md:w-1/5 mt-5`}>
+        Filters:
+      </div>
+      <div className={`w-full lg:w-4/5 mt-5`}>
+        <div className={`grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-4`}>
         {
           products?.map((product) => {
             return (

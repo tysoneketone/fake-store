@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import useLocalStorage from './utils/useLocalStorage';
+import { useLocalStorage } from './utils/LocalStorage';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -74,7 +74,7 @@ const App = () => {
     )
   };
 
-  const handleAddOrderItems = (orderedItems: Product[]) => {
+  const handleOrderItems = (orderedItems: Product[]) => {
     if (orderedItems === []) return;
 
     setOrderItems(prev => prev.concat(orderedItems));
@@ -119,12 +119,13 @@ const App = () => {
                 cartItems={cartItems}
                 addToCart={addToCart}
                 totalCartAmount={totalCartAmount}
-                addOrderedItems={handleAddOrderItems} 
+                addOrderedItems={handleOrderItems} 
                 removeFromCart={removeFromCart} 
               />
             )} />
             <Route exact path='/confirmation' render={ () => (
               <ConfirmationPage
+                orderId={'generateOrderId'}
                 orderedItems={orderItems}
                 totalOrderAmount={totalOrderAmount}
                 clearOrder={clearOrderItems} />
