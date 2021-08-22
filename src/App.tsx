@@ -92,7 +92,7 @@ const App = () => {
         <div className="w-full h-full my-20">
           <Switch>
             <Route exact path='/' render={() => (
-              <HomePage products={data} addToCart={addToCart} />
+              <HomePage products={data} />
             )} />
             <Route exact path='/check-out' render={ () => (
               <CheckoutPage
