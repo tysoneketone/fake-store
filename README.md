@@ -4,11 +4,11 @@ Website Link: https://fakestoreapp.netlify.app/
 
 ## Description
 
-This app simulates the actions of a generic shopping cart, from selecting, adding/removing items from a shopping cart to checking out and creating new customer order. The data is stored using local storage and is not persisted to any data source.
+This app simulates the actions of a generic shopping cart, from selecting, adding/removing items from a shopping cart to the checkout process.
 
 ### API
 
-- Fake Store API is open source and can be found at:
+- The Fake Store API is used as the apps data source and can be found at:
 
 Link: https://fakestoreapi.com/
 
@@ -25,7 +25,7 @@ Link: https://fakestoreapi.com/
 
 ### 2. Configuration
 
-## Testing
+#### Testing
 
 - Javascript tests use Cypress.
 
