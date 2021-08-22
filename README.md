@@ -47,6 +47,3 @@ Link: https://fakestoreapi.com/
   ```bash
   $ yarn build
   ```
-
-
-## Functionality
