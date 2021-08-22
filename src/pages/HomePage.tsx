@@ -9,10 +9,10 @@ interface Props {
 export const HomePage: React.FC<Props> = ({ products, addToCart }) =>
   <div className="flex flex-col lg:flex-row max-w-7xl h-full mx-auto px-3">
     <div className="w-full mt-5">
-      <div className="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-4">
+      <div className="grid grid-flow-row grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-4">
       {products?.map((product) =>
         <div key={product.id} className="flex flex-col justify-center items-center w-full">
-          <ProductCard product={product} handleAddToCart={addToCart} />
+          <ProductCard product={product} />
         </div>  
       )}
       </div>
