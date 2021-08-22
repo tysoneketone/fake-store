@@ -1,20 +1,20 @@
-# Fake Store
+# Fake Store App
+
+Website Link: https://fakestoreapp.netlify.app/
+
+## Description
+
+This app simulates the actions of a generic shopping cart, from selecting, adding/removing items from a shopping cart to checking out and creating new customer order. The data is stored using local storage and is not persisted to any data source.
+
+### API
+
+- Fake Store API is open source and can be found at:
+
+Link: https://fakestoreapi.com/
 
 ## Development
 
-### Tech Stack
-
-- Reactjs
-- Typescript
-- Tailwindcss
-- Material UI
-- Cypress
-
-#### 1. Install Prerequisites
-
-- NodeJS
-
-  Prefer to use nvm (https://github.com/creationix/nvm) + avn (https://github.com/wbyoung/avn) for Node version management
+### 1. Install Prerequisites
 
 - Yarn
 
@@ -22,26 +22,28 @@
   $ brew install yarn
   ```
 
-- Environment
 
-  ```bash
-  $ cp .env.example .env
-  ```
-
-#### 2. Configuration
+### 2. Configuration
 
 ## Testing
 
-- Rails and Ruby tests use RSpec.
+- Javascript tests use Cypress.
 
   ```bash
-  $ bundle exec bin/spec
+  $ yarn test
   ```
 
-- Javascript tests use Jest.
+### 3. Run
+
+
+
+### 4. Deployment
+
+- This app is deployed with netlify. To delpoy new changes, account access to Netlify is required.
 
   ```bash
-  yarn test
+  $ yarn build
   ```
 
-## Deployment
+
+## Functionality
