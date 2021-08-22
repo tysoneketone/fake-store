@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { useLocalStorage } from './utils/LocalStorage';
+import { useLocalStorage, clearLocalStorage } from './utils/LocalStorage';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -82,11 +82,6 @@ const App = () => {
     clearLocalStorage('cartItems')
   };
 
-  const totalCartAmount = cartItems
-    ?.map(item => item.price * item.qty)
-    .reduce((a, price) => a + price, 0)
-    .toFixed(2)
-
   const totalOrderAmount = orderItems
     ?.map(item => item.price * item.qty)
     .reduce((a, price) => a + price, 0)
@@ -95,10 +90,6 @@ const App = () => {
   const clearOrderItems = () => {
     setOrderItems(prev => [])
     clearLocalStorage('orderItems')
-  }
-
-  const clearLocalStorage = (key: string) => {
-    localStorage.removeItem(key)
   }
 
   return (
@@ -118,14 +109,13 @@ const App = () => {
               <CheckoutPage
                 cartItems={cartItems}
                 addToCart={addToCart}
-                totalCartAmount={totalCartAmount}
                 addOrderedItems={handleOrderItems} 
                 removeFromCart={removeFromCart} 
               />
             )} />
             <Route exact path='/confirmation' render={ () => (
               <ConfirmationPage
-                orderId={'generateOrderId'}
+                orderId={'generateOrderId'} // TODO: Add unique order id
                 orderedItems={orderItems}
                 totalOrderAmount={totalOrderAmount}
                 clearOrder={clearOrderItems} />

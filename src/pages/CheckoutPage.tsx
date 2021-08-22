@@ -6,13 +6,17 @@ import CheckoutItem from '../components/Checkout/CheckoutItem';
 
 type Props = {
   cartItems?: Product[];
-  totalCartAmount: string;
   addToCart: (clickedItem: Product) => void;
   addOrderedItems: (orderedItems: Product[]) => void;
   removeFromCart: (id: number) => void;
 }
 
-const CheckoutPage: React.FC<Props> = ({ cartItems, addToCart, addOrderedItems, totalCartAmount, removeFromCart }) => {
+const CheckoutPage: React.FC<Props> = ({ cartItems, addToCart, addOrderedItems, removeFromCart }) => {
+  const totalCartAmount = cartItems
+  ?.map(item => item.price * item.qty)
+  .reduce((a, price) => a + price, 0)
+  .toFixed(2)
+
   return (
     <div className={`flex flex-col justify-center items-center max-w-7xl mx-auto`}>
       <h1 className={`w-full my-5 text-4xl text-center font-bold`}>Your Purchase Summary</h1>

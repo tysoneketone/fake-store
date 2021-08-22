@@ -8,7 +8,7 @@ type Props = {
 }
 
 const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
-  const totalCartAmount = cartItems
+  const totalAmount = cartItems
     .map(item => item.price * item.qty)
     .reduce((a, price) => a + price, 0)
     .toFixed(2)
@@ -19,15 +19,15 @@ const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
       { cartItems.length === 0 ? <p className={`pt-5 text-center`}> No items in cart</p> : null }
       { cartItems.map(item => (
         <CartItem
-          key={item.id}
+          key={item.id} 
           item={item}
           addToCart={addToCart}
-          removeFromCart={removeFromCart}
+          removeFromCart={removeFromCart} 
         />
       ))}
       <h3 className={`mt-5 text-xl md:text-xl px-5 md:px-2`}>
         <span className={`font-bold mr-1`}>Total Purchase:</span>
-        <span>${totalCartAmount}</span>
+        <span>${totalAmount}</span>
       </h3>
     </div>
   )
