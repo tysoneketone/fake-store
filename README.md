@@ -41,7 +41,9 @@ Link: https://fakestoreapi.com/
 
 ### 4. Deployment
 
-- This app is deployed with netlify. To delpoy new changes, account access to Netlify is required.
+- This app is deployed with netlify and is deployed automatically when changes are merged to the Master branch.
+
+- Command
 
   ```bash
   $ yarn build
