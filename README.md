@@ -35,6 +35,9 @@ Link: https://fakestoreapi.com/
 
 ### 3. Run
 
+  ```bash
+  $ yarn start
+  ```
 
 
 ### 4. Deployment
