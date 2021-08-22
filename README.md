@@ -22,7 +22,6 @@ Link: https://fakestoreapi.com/
   $ brew install yarn
   ```
 
-
 ### 2. Configuration
 
 #### Testing

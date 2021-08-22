@@ -1,15 +1,12 @@
 /// <reference types="cypress" />
 
-describe("Add items to cart", () => {
-  before(() => {
+describe("Add Item to Cart", () => {
+  it("Should successfully add product to Cart", () => {
     cy.visit('/');
-  });
-
-  it("Should render home page", () => {
-    cy.url().should('eq', 'http://localhost:3000/')
-  });
-
-  it("Should add first product listing to Cart", () => {
-    cy.get('button').first().click()
+    cy.get('button').first()
+      .click()
+      // eslint-disable-next-line jest/valid-expect
+      .should(() => expect(localStorage.getItem('cartItems')).to.not.be.null
+    )
   })
 });

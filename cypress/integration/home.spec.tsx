@@ -1,11 +1,8 @@
 /// <reference types="cypress" />
 
-describe("item to cart", () => {
-  before(() => {
-    cy.visit('/');
-  });
-
+describe("Render Home Page", () => {
   it("Should successfully render home page", () => {
+    cy.visit('/');
     cy.url().should("eq", "http://localhost:3000/");
   })
 })
