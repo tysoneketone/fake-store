@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
-describe("Renders home page", () => {
-  it("renders correctly", () => {
+describe("Render home page", () => {
+  it("Render successful", () => {
     beforeEach(() => {});
   });
 });
