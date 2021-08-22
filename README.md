@@ -31,6 +31,7 @@
 #### 2. Configuration
 
 ## Testing
+
 - Rails and Ruby tests use RSpec.
 
   ```bash

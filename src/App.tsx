@@ -1,35 +1,22 @@
 import { useQuery } from 'react-query';
+import { Product } from './types/product';
+import { Order } from './types/order';
+
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import { useLocalStorage, clearLocalStorage } from './utils/LocalStorage';
+import { getTotalAmount } from './utils/getTotalAmount';
 
-// Pages
-import HomePage from './pages/HomePage';
-import CheckoutPage from './pages/CheckoutPage';
-import ConfirmationPage from './pages/ConfirmationPage'
-
-// Components
-import Navbar from './components/Navbar';
-
-// Material UI
+import { fetchProducts } from './api/fetchProducts';
+import { HomePage } from './pages/HomePage';
+import { CheckoutPage } from './pages/CheckoutPage';
+import { ConfirmationPage } from './pages/ConfirmationPage'
+import { Navbar } from './components/Navbar';
 import { CircularProgress } from '@material-ui/core';
-
-export type Product = {
-  id: number;
-  title: string;
-  price: number;
-  category: string;
-  description: string;
-  image: string;
-  qty: number;
-}
-
-// GET All Products
-const fetchProducts = async (): Promise<Product[]> => 
-  await (await fetch('https://fakestoreapi.com/products')).json();
 
 const App = () => {
   const [cartItems, setCartItems] = useLocalStorage('cartItems', [] as Product[]);
-  const [orderItems, setOrderItems] = useLocalStorage('orderItems', [] as Product[]);
+  const [order, setOrder] = useLocalStorage('order', {} as Order);
   const { data, isLoading, error } = useQuery<Product[]>('products', fetchProducts);
 
   if (isLoading) return (
@@ -74,33 +61,35 @@ const App = () => {
     )
   };
 
-  const handleOrderItems = (orderedItems: Product[]) => {
+  const addOrder = (orderedItems: Product[]) => {
     if (orderedItems === []) return;
 
-    setOrderItems(prev => prev.concat(orderedItems));
-    setCartItems(prev => [])
+    const generateId = Math.random().toString(18).slice(2);
+    const order: Order = {
+      id: generateId,
+      products: orderedItems,
+      totalAmount: getTotalAmount(orderedItems)
+    };
+
+    setOrder(order);
+    setCartItems([])
     clearLocalStorage('cartItems')
   };
 
-  const totalOrderAmount = orderItems
-    ?.map(item => item.price * item.qty)
-    .reduce((a, price) => a + price, 0)
-    .toFixed(2)
-
-  const clearOrderItems = () => {
-    setOrderItems(prev => [])
-    clearLocalStorage('orderItems')
+  const clearOrder = () => {
+    setOrder({})
+    clearLocalStorage('order')
   }
 
   return (
     <Router>
-      <div className={`w-full h-full m-auto p-0`}>
+      <div className="w-full h-full m-auto p-0">
         <Navbar
           cartItems={cartItems}
           addToCart={addToCart}
           removeFromCart={removeFromCart}
         />
-        <div className={`w-full h-full mt-20`}>
+        <div className="w-full h-full my-20">
           <Switch>
             <Route exact path='/' render={() => (
               <HomePage products={data} addToCart={addToCart} />
@@ -109,16 +98,14 @@ const App = () => {
               <CheckoutPage
                 cartItems={cartItems}
                 addToCart={addToCart}
-                addOrderedItems={handleOrderItems} 
+                addOrderedItems={addOrder} 
                 removeFromCart={removeFromCart} 
               />
             )} />
             <Route exact path='/confirmation' render={ () => (
               <ConfirmationPage
-                orderId={'generateOrderId'} // TODO: Add unique order id
-                orderedItems={orderItems}
-                totalOrderAmount={totalOrderAmount}
-                clearOrder={clearOrderItems} />
+                order={order}
+                clearOrder={clearOrder} />
             )} />
           </Switch>
         </div>
