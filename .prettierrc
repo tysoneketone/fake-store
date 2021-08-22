@@ -1,14 +1,33 @@
 {
-  "env": {
-    "commonjs": true,
-    "es6": true,
-    "node": true
-  },
-  "extends": "eslint:recommended",
   "parserOptions": {
-    "ecmaVersion": 2020
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
   },
-  "rules": {
-    "no-console": "error"
+
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "cypress/globals": true
+  },
+
+  "extends": [
+    "plugin:cypress/recommended"
+  ],
+
+  "plugins": [
+    "import",
+    "promise",
+    "standard",
+    "cypress"
+  ],
+
+  "globals": {
+    "document": "readonly",
+    "navigator": "readonly",
+    "window": "readonly"
   }
 }

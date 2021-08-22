@@ -36,7 +36,7 @@ export const Navbar: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }
             removeFromCart={removeFromCart} 
           />
           { cartItems.length > 0 ? ( 
-            <div className="flex justify-end items-center my-5 px-5">
+            <div className="checkout-btn flex justify-end items-center my-5 px-5">
               <Button
                 component={Link}
                 to='/check-out'
