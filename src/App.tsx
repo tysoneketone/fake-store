@@ -32,24 +32,24 @@ const App = () => {
   )
 
   const addToCart = (clickedItem: Product) => {
-    setCartItems(prevItem => {
-      const isItemInCart = prevItem.find(item => item.id === clickedItem.id)
+    setCartItems(prevItems => {
+      const isItemInCart = prevItems.find(item => item.id === clickedItem.id)
 
       if (isItemInCart) {
-        return prevItem.map(item => (
+        return prevItems.map(item => (
           item.id === clickedItem.id
           ? { ...item, qty: item.qty + 1 } 
           : item
         ));
       }
 
-      return [...prevItem, { ...clickedItem, qty: 1 }];
+      return [...prevItems, { ...clickedItem, qty: 1 }];
     })
   };
 
   const removeFromCart = (id: number) => {
-    setCartItems(prev =>
-      prev.reduce((accumulator, item) => {
+    setCartItems(prevItems =>
+      prevItems.reduce((accumulator, item) => {
         if (item.id === id) {
           if (item.qty === 1) return accumulator;
           return [...accumulator, { ...item, qty: item.qty - 1 }]
